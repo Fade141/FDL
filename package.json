@@ -1,0 +1,37 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.tsx",
+  "homepage": "https://fade141.github.io/FDL",
+  "dependencies": {
+    "papaparse": "5.5.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "gh-pages": "6.1.1",
+    "loader-utils": "3.2.1",
+    "shx": "0.3.4",
+    "typescript": "4.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "postbuild": "shx cp build/index.html build/404.html"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

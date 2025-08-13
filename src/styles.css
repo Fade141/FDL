@@ -1,0 +1,636 @@
+/* Base */
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  color: #0b0b0b;
+  background: #fff;
+  line-height: 1.6;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+:root {
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --brand: #0f172a; /* deep slate */
+  --accent: #111827;
+  --card-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.18);
+  --card-shadow-h: 0 18px 40px -10px rgba(0, 0, 0, 0.22);
+}
+
+/* Navbar */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 64px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.65)
+  );
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.nav .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--zinc-900);
+  letter-spacing: 0.2px;
+}
+.logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #0b0b0b;
+}
+.logo.light {
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.nav nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav nav a {
+  font-size: 14px;
+  color: #262626;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.btn:hover {
+  filter: brightness(0.95);
+}
+.btn.light {
+  background: #fff;
+  color: #0b0b0b;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.btn.dark {
+  background: #0b0b0b;
+  color: #fff;
+  height: 44px;
+  padding: 0 16px;
+}
+
+.hero {
+  height: 86vh;
+  position: relative;
+  overflow: hidden;
+  background: #000; /* fallback color behind video */
+  /* Mobile fallback image; used when video is hidden via media query */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Video fills container */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* responsive cover, like background-size: cover */
+  object-position: center;
+  z-index: 0;
+}
+
+/* Keep your overlay and content as-is */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0)
+  );
+}
+/* Strong, responsive hero title */
+.hero-inner h1 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-weight: 800; /* make it thicker */
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  font-size: clamp(36px, 6vw, 68px); /* bigger on desktop, solid on mobile */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtitle just below */
+.hero-inner .tag {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500; /* slightly thicker than default */
+  font-size: clamp(16px, 2.2vw, 22px);
+}
+
+/* Ensure content sits above video + overlay */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Optional: subtle glow for readability on bright frames */
+.hero-inner h1,
+.hero-inner .tag {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.fade-bottom {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 100px;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-video {
+    display: none;
+  }
+}
+
+.fade-bottom {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 100px;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+}
+
+/* Mobile optimization: hide video and use the poster/image to save data/battery */
+@media (max-width: 768px) {
+  .hero-video {
+    display: none;
+  }
+  .hero {
+    background-attachment: scroll;
+  }
+}
+
+.tag {
+  font-size: 18px;
+  opacity: 0.9;
+  max-width: 640px;
+}
+.cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+.cta .btn {
+  height: 44px; /* same height for both */
+  padding: 0 16px; /* even horizontal padding */
+  display: inline-flex;
+  align-items: center; /* center text vertically */
+  justify-content: center;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 12px;
+}
+.fade-bottom {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 100px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
+}
+
+/* Ticker */
+.ticker {
+  background: var(--zinc-900);
+  color: #fff;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  gap: 40px;
+  padding: 8px 24px;
+  white-space: nowrap;
+  animation: slide 30s linear infinite;
+}
+.ticker-track span {
+  font-size: 12px;
+  opacity: 0.95;
+}
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Sections */
+.section {
+  padding: 90px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section.soft {
+  background: linear-gradient(to bottom, var(--zinc-50), #fff);
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 26px;
+}
+.section-head h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 0 0 8px;
+}
+.section-head p {
+  color: #555;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Grid & Cards */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.grid.thirds {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .grid.thirds {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--zinc-200);
+  box-shadow: var(--card-shadow);
+  padding: 18px 18px 20px;
+}
+.card:hover {
+  box-shadow: var(--card-shadow-h);
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #0b0b0b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.card-body {
+  color: #4b5563;
+}
+
+/* ZIP locator */
+.zip-wrap {
+  border: 1px solid var(--zinc-200);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+}
+.zip-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.zip-form input {
+  flex: 1;
+  min-width: 180px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid #d4d4d8;
+  outline: none;
+}
+.zip-form input:focus {
+  border-color: #b3b3b8;
+}
+.zip-form button {
+  height: 44px;
+  border-radius: 12px;
+  padding: 0 14px;
+  background: #0b0b0b;
+  color: #fff;
+  font-weight: 600;
+}
+.zip-result {
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid;
+}
+.zip-result.ok {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+.zip-result.bad {
+  background: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+.zip-note {
+  color: #6b7280;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+/* Contact */
+.contact {
+  border: 1px solid var(--zinc-200);
+  border-radius: 18px;
+  padding: 24px;
+  background: linear-gradient(135deg, #fff, var(--zinc-50));
+  box-shadow: var(--card-shadow);
+}
+.contact h3 {
+  margin: 0 0 6px;
+  font-size: 24px;
+}
+.contact p {
+  color: #4b5563;
+  margin: 0 0 14px;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid #d4d4d8;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+.contact-form textarea {
+  min-height: 120px;
+}
+.contact-form .btn {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Footer */
+.footer {
+  background: #0a0a0a;
+  color: #c9c9c9;
+  padding: 40px 24px;
+  margin-top: 40px;
+}
+.foot-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+.foot-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #fff;
+}
+.muted {
+  color: #a1a1aa;
+  font-size: 14px;
+}
+.foot-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.foot-title {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.foot-copy {
+  max-width: 1100px;
+  margin: 16px auto 0;
+  font-size: 12px;
+  color: #8e8e93;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 12px;
+}
+
+.fdl_img {
+  height: 60px;
+  width: 50px;
+  padding-top: 5px;
+  padding-right: 5px;
+}
+
+/* Flip Image Cards */
+.flipcard {
+  perspective: 1200px;
+  position: relative;
+  height: 100%;
+}
+.flipcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform-style: preserve-3d;
+}
+/* Hover flip on desktop */
+@media (hover: hover) and (pointer: fine) {
+  .flipcard:hover .flipcard-inner {
+    transform: rotateY(180deg);
+  }
+}
+/* Tap-to-flip on mobile */
+.flipcard.is-flipped .flipcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flipcard-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--zinc-200);
+  box-shadow: var(--card-shadow);
+  background: #fff;
+}
+
+/* FRONT (image) */
+.flipcard-front {
+  transform: rotateY(0deg);
+  padding: 0;
+}
+.flip-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.flip-front-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.45));
+}
+.flip-front-title {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  color: #fff;
+}
+.flip-front-title h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.flip-hint {
+  font-size: 11px;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* BACK (text) */
+.flipcard-back {
+  transform: rotateY(180deg);
+  padding: 18px 18px 20px;
+}
+.flipcard.is-flipped .flipcard-back,
+.flipcard:hover .flipcard-back {
+  z-index: 1;
+}
+
+/* Keep your existing .card-head/.card-body look */
+.list {
+  margin: 0;
+  padding-left: 18px;
+  color: #4b5563;
+}
+.list li {
+  margin: 6px 0;
+}
+
+/* Make grid cards consistent height so flips look smooth */
+.grid > * {
+  min-height: 280px;
+}
+@media (min-width: 860px) {
+  .grid > * {
+    min-height: 320px;
+  }
+}
+
+/* Reveal on scroll */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+[data-reveal].in {
+  opacity: 1;
+  transform: translateY(0);
+}
