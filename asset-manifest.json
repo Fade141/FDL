@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/FDL/static/css/main.4d2f0a7b.css",
+    "main.js": "/FDL/static/js/main.076185f4.js",
+    "index.html": "/FDL/index.html",
+    "main.4d2f0a7b.css.map": "/FDL/static/css/main.4d2f0a7b.css.map",
+    "main.076185f4.js.map": "/FDL/static/js/main.076185f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d2f0a7b.css",
+    "static/js/main.076185f4.js"
+  ]
+}
